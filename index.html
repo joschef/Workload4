@@ -3,16 +3,60 @@
 	<head>
 	<meta charset="UTF-8">
 		<title>Neuseelandreise Marahau</title>
+
 	<link rel="stylesheet" href="styles.css"></link>
-	 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.0.3/dist/leaflet.css" />
+	<link rel="stylesheet" href="https://unpkg.com/leaflet@1.0.3/dist/leaflet.css" />
+	<script src="https://unpkg.com/leaflet@1.0.3/dist/leaflet.js"></script>
+			    <style>
+		   #overviewMap {
+            float:right;
+            width: 200px;
+            height: 200px;
+            border: 1px solid black;
+			}
+    </style>
+
 	</head>
 	<body>
 
 	<h1>Marahau</h1>
+	
+		 <div id="overviewMap"></div>
+	<script>
+		var map = L.map('overviewMap').setView([-41.005558, 173.009196], 7);
+		
+
+		//L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={accessToken}', {
+		//attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="http://mapbox.com">Mapbox</a>',
+		//maxZoom: 18,
+		//id: 'your.mapbox.project.id',
+		//accessToken: 'your.mapbox.public.access.token'
+		//}).addTo(mymap);
+		
+		var osm = L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png');
+		osm.addTo(map);
+		
+		var marker = L.marker([-41.005558,173.009196]);
+		marker.addTo(map);
+		
+		var popup = L.popup();
+
+			function onMapClick(e) {
+				popup
+				.setLatLng(e.latlng)
+				.setContent("Marahau")
+				.openOn(map);
+				}
+
+				map.on('click', onMapClick);
+		 
+	</script>
 
 	<h2>Das Tor zum Abel Tasman National Park</h2>
 	
 	<h3>Länge 173°00′32″O, Breite 41°0′28″S, Seehöhe 0 Meter</h3>
+	
+
 
 		<p class="info">
 		Marahau ist eine kleine Siedlung mit ca. 500 Einwohnern im Tasman District im Norden der Südinsel. 
